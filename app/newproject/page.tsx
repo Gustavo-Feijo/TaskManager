@@ -1,16 +1,8 @@
 "use client";
 import { useState } from "react";
 
-interface PostData {
-  project_name: string;
-  project_description: string;
-  project_status: string;
-  project_start_date: string;
-  project_deadline: string;
-}
-
 function Page() {
-  const [postData, setPostData] = useState<PostData>({
+  const [postData, setPostData] = useState<Project>({
     project_name: "",
     project_description: "",
     project_status: "Todo",
@@ -22,10 +14,10 @@ function Page() {
 
   function validateForm() {
     let formErrors: { [key: string]: string } = {};
-    let key: keyof PostData;
+    let key: keyof Project;
     for (key in postData) {
       if (!postData[key]) {
-        formErrors[key]
+        formErrors[key];
       }
     }
     if (!postData.project_name) {
@@ -52,7 +44,7 @@ function Page() {
   }
 
   function handleSubmit() {
-    let key: keyof PostData;
+    let key: keyof Project;
     for (key in postData) {
       console.log(postData[key]);
     }
