@@ -28,18 +28,39 @@ class databaseOperations {
   }
 
   //Creates a new project.
-  async createProject(projectName) {
-    const query = "INSERT INTO tb_project (project_name) VALUES (?)";
-    return this.executeQuery(query, [projectName]);
+  async createProject(
+    project_name,
+    project_description,
+    project_status,
+    project_start_date,
+    project_deadline
+  ) {
+    const query =
+      "INSERT INTO tb_project (project_name,project_description,project_status,project_start_date,project_deadline) VALUES (?,?,?,?,?)";
+    return this.executeQuery(query, [
+      project_name,
+      project_description,
+      project_status,
+      project_start_date,
+      project_deadline,
+    ]);
   }
 
   //Updates a project.
-  async updateProject(project_description, project_status, project_id) {
+  async updateProject(
+    project_description,
+    project_status,
+    project_start_date,
+    project_deadline,
+    project_id
+  ) {
     const query =
-      "UPDATE tb_project set project_description = ?, project_status = ? WHERE project_id = ?";
+      "UPDATE tb_project set project_description = ?, project_status = ?, project_start_date = ?, project_deadline = ? WHERE project_id = ?";
     return this.executeQuery(query, [
       project_description,
       project_status,
+      project_start_date,
+      project_deadline,
       project_id,
     ]);
   }
@@ -60,22 +81,39 @@ class databaseOperations {
   }
 
   //Query to create a new task on a project.
-  async createTask(projectID, taskName) {
+  async createTask(
+    project_id,
+    task_name,
+    task_description,
+    task_user,
+    task_start_date,
+    task_deadline
+  ) {
     const query =
-      "INSERT INTO tb_task(project_id, task_name,task_description) VALUES(?,?,?)";
+      "INSERT INTO tb_task (project_id, task_name, task_description, task_user,task_status,task_urgency, task_start_date, task_deadline) VALUES(?,?,?,?,?,?,?,?)";
     return this.executeQuery(query, [projectID, taskName, ""]);
   }
 
   //Update a task based on the id.
-  async updateTask(taskDescription, taskUser, taskStatus, taskUrgency, taskId) {
+  async updateTask(
+    task_description,
+    task_user,
+    task_status,
+    task_urgency,
+    task_start_date,
+    task_deadline,
+    task_id
+  ) {
     const query =
-      "UPDATE tb_task SET task_description = ?, task_user = ?, task_status = ?, task_urgency = ? WHERE task_id = ?";
+      "UPDATE tb_task SET task_description = ?, task_user = ?, task_status = ?, task_urgency = ?, task_start_date = ?, task_deadline = ? WHERE task_id = ?";
     return this.executeQuery(query, [
-      taskDescription,
-      taskUser,
-      taskStatus,
-      taskUrgency,
-      taskId,
+      task_description,
+      task_user,
+      task_status,
+      task_urgency,
+      task_start_date,
+      task_deadline,
+      task_id,
     ]);
   }
 

@@ -1,8 +1,10 @@
 type Project = {
-  project_id: number;
-  project_name: string | null;
-  project_description?: string | null;
-  project_status?: string;
+  project_id?: number | null;
+  project_name: string;
+  project_description: string;
+  project_status: string;
+  project_start_date: string;
+  project_deadline: string;
 };
 
 type Task = {

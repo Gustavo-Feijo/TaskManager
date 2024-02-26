@@ -36,18 +36,21 @@ function Page() {
   }
 
   function handleOnChange(field: string, value: any) {
-    console.log(value);
     setPostData((prev) => ({
       ...prev,
       [field]: value,
     }));
   }
 
-  function handleSubmit() {
-    let key: keyof Project;
-    for (key in postData) {
-      console.log(postData[key]);
-    }
+  async function handleSubmit() {
+    const response = await fetch("/api/Project", {
+      method: "POST",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
   }
 
   return (
