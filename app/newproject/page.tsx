@@ -1,40 +1,61 @@
 "use client";
 import { useState } from "react";
 
+//Function to render the page with the form to create a new project.
 function Page() {
+  //Object that holds the values to be used on the post request.
+  //Uses the type Project.
   const [postData, setPostData] = useState<Project>({
+    //Initialize the values of name and description as empty strings, since they are going to be tested for length.
     project_name: "",
     project_description: "",
     project_status: "Todo",
-    project_start_date: "",
-    project_deadline: "",
+    //Set the start date and deadline to be null.
+    project_start_date: null,
+    project_deadline: null,
   });
 
+  //Object to hold the errors on the inputs.
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
+  //Function to validate the postData.
   function validateForm() {
+    //Create a new object to hold the input errors temporarily before inserting into the errors object.
     let formErrors: { [key: string]: string } = {};
     let key: keyof Project;
+
+    //If any of the data is null, then add it to the errors object.
     for (key in postData) {
       if (!postData[key]) {
         formErrors[key];
       }
     }
-    if (!postData.project_name) {
-      formErrors.project_name = "Project name is required";
+
+    //Verifies if the project name is long enought.
+    if (postData.project_name.length < 3) {
+      formErrors.project_name =
+        "Project name should be at least 3 characters long.";
     }
-    if (!postData.project_description) {
+
+    //Verifies if the project description is long enought.
+    if (postData.project_description.length == 0) {
       formErrors.project_description = "Project description is required";
     }
+
+    //Verifies if both project dates are not null.
     if (!postData.project_start_date) {
       formErrors.project_start_date = "Start date is required";
-    }
-    if (!postData.project_deadline) {
+    } else if (!postData.project_deadline) {
       formErrors.project_deadline = "Deadline is required";
     }
+
+    //TODO: Do a checking if the start date is earlier than the deadline.
+    //TODO: Verify the idea of changing the types of the dates to not support null and validate the dates with the Date constructor.
+
     setErrors(formErrors);
   }
 
+  //Change the postData values for each field when they are changed.
   function handleOnChange(field: string, value: any) {
     setPostData((prev) => ({
       ...prev,
@@ -42,17 +63,23 @@ function Page() {
     }));
   }
 
+  //Verifies if there is any error in the form and do a post request.
+  //TODO: Get the response from the api to show it on the frontend.
   async function handleSubmit() {
-    const response = await fetch("/api/Project", {
-      method: "POST",
-      cache: "no-cache",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    });
+    validateForm();
+    if (Object.keys(errors).length == 0) {
+      const response = await fetch("/api/projects/create", {
+        method: "POST",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+    }
   }
 
+  //Form with a select field for the status, one text input for the name, two date inputs for the dates and one textarea input for the description.
   return (
     <form className="flex flex-col [height:600px] [width:500px] items-center justify-around border-2 border-[color:var(--border-color)] p-10 rounded-md shadow-lg shadow-slate-700">
       <div className="flex justify-around w-full">

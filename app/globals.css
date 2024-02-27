@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Simple utilities for tailwind */
 @layer utilities {
+  /* Utilized for centralizing content on a flex container. */
   .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
+  /* Utilized for centering <select> text. */
   .text-align-last-center {
     text-align-last: center;
   }

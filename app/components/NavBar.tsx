@@ -1,5 +1,7 @@
 import Link from "next/link";
 import style from "./NavBar.module.css";
+
+//Function to create the navigation bar. Loops through four links and creates them. Use a regex to remove the whitespace.
 function NavBar() {
   const buttons = ["Home", "Projects", "New Project", "About"];
   return (

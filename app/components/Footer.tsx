@@ -4,6 +4,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaDiscord } from "react-icons/fa6";
 
+//Footer with some social media links.
 function Footer() {
   return (
     <div className="h-36 border-t-2 border-[color:var(--border-color)] w-full flex items-center justify-center">
