@@ -23,7 +23,7 @@ export default function RootLayout({
         className={`${inter.className} flex flex-col justify-center items-center min-h-screen px-48`}
       >
         <NavBar />
-        <div className="flex-1 w-full flex items-center justify-center">
+        <div className="flex-1 w-full flex flex-col items-center justify-center">
           {children}
         </div>
         <Footer />
