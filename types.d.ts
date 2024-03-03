@@ -15,6 +15,8 @@ type Task = {
   task_user?: number | null;
   task_status?: "Completed" | "On Hold" | "In Progress" | "Todo" | null;
   task_urgency?: "Critical" | "Urgent" | "Alert" | "Normal" | "Low" | null;
+  task_start_date?: Date;
+  task_deadline?: Date;
 };
 
 type User = {

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaPencil } from "react-icons/fa6";
@@ -6,7 +7,7 @@ function Project(props: any) {
   function formatDate(dateString: Date) {
     const date = new Date(dateString);
 
-    const day = date.getDate();
+    const day = date.getDate().toString().padStart(2, "0");
     //Get the month, add one since it returns since 0, and add a padding 0 to the left for months smaller than 10.
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
@@ -26,7 +27,7 @@ function Project(props: any) {
   return (
     <div className="h-20 p-2 default-border flex items-center justify-between w-200 bg-slate-700 shadow-md shadow-slate-800 bg-opacity-30 hover:scale-105 transition-all">
       <div className="h-full flex flex-col overflow-hidden">
-        <div className="text-xs flex justify-center  border-b-2">
+        <div className="text-xs flex justify-center  border-b">
           Project Name
         </div>
         <div className="flex-1 flex-center min-w-40 max-w-40 overflow-x-scroll">
@@ -34,36 +35,32 @@ function Project(props: any) {
         </div>
       </div>
       <div className="h-full flex flex-col">
-        <div className="text-xs flex justify-center  border-b-2">Status</div>
+        <div className="text-xs flex justify-center  border-b">Status</div>
         <div className="flex-1 flex-center max-w-32 min-w-32">
           {props.project_status}
         </div>
       </div>
       <div className="h-full flex flex-col">
-        <div className="text-xs flex justify-center  border-b-2">
-          Start Date
-        </div>
+        <div className="text-xs flex justify-center  border-b">Start Date</div>
         <div className="flex-1 flex-center max-w-32 min-w-32">
           {formatDate(props.project_start_date)}
         </div>
       </div>
       <div className="h-full flex flex-col">
-        <div className="text-xs flex justify-center  border-b-2">Deadline</div>
+        <div className="text-xs flex justify-center  border-b">Deadline</div>
         <div className="flex-1 flex-center max-w-32 min-w-32">
           {formatDate(props.project_deadline)}
         </div>
       </div>
-      <div className="cursor-pointer">
-        <FaRegTrashCan
-          className="text-red-800 text-2xl"
-          onClick={() => {
-            if (props.project_id) handleDeletion();
-          }}
-        />
-      </div>
-      <div className="cursor-pointer">
-        <FaPencil className="text-green-300 text-2xl" />
-      </div>
+      <Link className="cursor-pointer" href={`/projects/${props.project_id}`}>
+        <FaPencil className="text-green-800 text-2xl" />
+      </Link>
+      <FaRegTrashCan
+        className="text-red-800 text-2xl cursor-pointer"
+        onClick={() => {
+          if (props.project_id) handleDeletion();
+        }}
+      />
     </div>
   );
 }

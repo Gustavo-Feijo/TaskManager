@@ -25,6 +25,12 @@ class DatabaseOperations {
     return this.executeQuery(query);
   }
 
+  //Get a specific project given the project id.
+  async getProject(project_id) {
+    const query = "SELECT * FROM tb_project where project_id = ?";
+    return this.executeQuery(query, [project_id]);
+  }
+
   //Receives as parameters the project information and insert it into the database.
   async createProject(
     project_name,

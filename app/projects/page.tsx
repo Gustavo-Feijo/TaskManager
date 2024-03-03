@@ -37,7 +37,7 @@ function ProjectPage() {
   }
 
   return (
-    <div className="default-border p-20">
+    <div className="default-border p-20 max-h-200 overflow-y-scrolbg-opacity-20 teste">
       {projects.map((project) => {
         return (
           <Project
