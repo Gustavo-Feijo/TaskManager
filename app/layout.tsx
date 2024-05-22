@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import LeftBar from "@/components/LeftBar";
+import { SessionProvider, SessionProviderProps } from "next-auth/react";
+import "@uploadthing/react/styles.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -11,12 +13,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: Readonly<{
   children: React.ReactNode;
+  session: SessionProviderProps["session"];
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="h-full">
+      <body
+        className={`${inter.className} flex items-center justify-start h-full`}
+      >
+        <SessionProvider session={session}>
+          <LeftBar />
+          <main className="h-full flex flex-1 items-center justify-center">
+            {children}
+          </main>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

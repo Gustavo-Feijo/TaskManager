@@ -29,7 +29,7 @@ function SignInForm(props: Props) {
       email: data.email,
       password: data.password,
       redirect: true,
-      callbackUrl: "/dashboard",
+      callbackUrl: "/",
     });
   };
   return (

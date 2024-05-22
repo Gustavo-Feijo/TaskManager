@@ -1,12 +1,8 @@
 import NextAuth from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import z from "zod";
 import bcrypt from "bcrypt";
 import Credentials from "next-auth/providers/credentials";
-
-// Prisma client
-const prisma = new PrismaClient();
+import prisma from "./server/db";
 
 // Zod schema for validating credentials.
 const signInSchema = z.object({
