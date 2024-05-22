@@ -24,11 +24,11 @@ Other options should be available, such as a link to a dashboard containing all 
 
 ## Todo:
 
-[X] Implement basic authentication
-[X] Authentication pages.
-[X] Image upload to UploadThing, as well as image deletion on profile picture changes.
-[] Improve database approach for projects and tasks.
-[] Add project creation and management, as well as tasks creation and management.
-[] Create a configuration system for privileges.
-[] Add testing mechanisms.
-[] Improve general code structure.
+- [x] Implement basic authentication
+- [x] Authentication pages.
+- [x] Image upload to UploadThing, as well as image deletion on profile picture changes.
+- [] Improve database approach for projects and tasks.
+- [] Add project creation and management, as well as tasks creation and management.
+- [] Create a configuration system for privileges.
+- [] Add testing mechanisms.
+- [] Improve general code structure.
